@@ -1,0 +1,19 @@
+name: Encrypted Variable Demo
+
+on:
+  push:
+
+jobs:
+  test-secret:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Use encrypted secret
+        env:
+          MY_SECRET: ${{ secrets.MY_SECRET }}
+        run: |
+          echo "Encrypted secret is successfully available."
+          echo "Secret length: ${#MY_SECRET}"
